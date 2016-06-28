@@ -8,9 +8,10 @@ class Users extends Component {
         this.props.fetchUsers();
     }
 
-    setCurrentUser(user) {
-        this.props.selectUser(user);
-        // console.log(user);
+    setCurrentUser(e) {
+        const user = JSON.parse(e.target.dataset.user);
+        console.log(user);
+        selectUser(user);
     }
 
 
@@ -21,7 +22,7 @@ class Users extends Component {
                     <td>{ user.name }</td>
                     <td>{ user.email }</td>
                     <td><Link to={"users/" + user.id}>
-                        <i className="glyphicon glyphicon-edit" onClick={this.setCurrentUser(user)}></i>
+                        <i className="glyphicon glyphicon-edit" data-user={JSON.stringify(user)} onClick={this.setCurrentUser}></i>
                     </Link></td>
                     <td><a>
                         <i className="glyphicon glyphicon-remove"></i>
